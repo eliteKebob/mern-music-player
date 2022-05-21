@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken"
-import bcrypt from "bcryptjs"
-import asyncHandler from "express-async-handler"
-import User from "../models/userModel.js"
-import Music from "../models/musicModel.js"
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
+const asyncHandler = require("express-async-handler")
+const User = require("../models/userModel.js")
+const Music = require("../models/musicModel.js")
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -125,7 +125,7 @@ const getUserLikedMusics = asyncHandler(async (req, res) => {
   res.status(200).json(newArr)
 })
 
-export {
+module.exports = {
   registerUser,
   loginUser,
   updateUser,

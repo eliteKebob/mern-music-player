@@ -1,7 +1,6 @@
-import mongoose from "mongoose"
-import Music from "../models/musicModel.js"
-import User from "../models/userModel.js"
-import asyncHandler from "express-async-handler"
+const asyncHandler = require("express-async-handler")
+const User = require("../models/userModel.js")
+const Music = require("../models/musicModel.js")
 
 const getAllMusic = asyncHandler(async (req, res) => {
   const music = await Music.find({})
@@ -133,7 +132,7 @@ const mostLikedTracks = asyncHandler(async (req, res) => {
   res.status(200).json(merged)
 })
 
-export {
+module.exports = {
   getAllMusic,
   getMusic,
   addMusic,

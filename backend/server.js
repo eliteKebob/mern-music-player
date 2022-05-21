@@ -1,13 +1,9 @@
-import express from "express"
-import path from "path"
-import dotenv from "dotenv"
-import userRoutes from "./routes/user.js"
-import musicRoutes from "./routes/music.js"
-import rateLimit from "express-rate-limit"
+const path = require("path")
+const express = require("express")
+const dotenv = require("dotenv").config()
+const rateLimit = require("express-rate-limit")
 
-dotenv.config()
-
-import connectDB from "./config/db.js"
+const connectDB = require("./config/db.js")
 const PORT = process.env.PORT || 5000
 
 connectDB()
@@ -25,8 +21,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use("/api", apiLimiter)
-app.use("/api/users", userRoutes)
-app.use("/api/music", musicRoutes)
+app.use("/api/users", require("./routes/user.js"))
+app.use("/api/music", require("./routes/music.js"))
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")))

@@ -1,6 +1,8 @@
-import express from "express"
+const express = require("express")
+const router = express.Router()
+const { protect } = require("../middleware/auth.js")
 
-import {
+const {
   registerUser,
   loginUser,
   updateUser,
@@ -8,10 +10,7 @@ import {
   likeMusic,
   getUserAddedMusics,
   getUserLikedMusics,
-} from "../controllers/user.js"
-import { protect } from "../middleware/auth.js"
-
-const router = express.Router()
+} = require("../controllers/user.js")
 
 router.post("/", registerUser)
 router.post("/login", loginUser)
@@ -21,4 +20,4 @@ router.put("/", protect, likeMusic)
 router.get("/:id/addedmusics", getUserAddedMusics)
 router.get("/:id/likedmusics", getUserLikedMusics)
 
-export default router
+module.exports = router

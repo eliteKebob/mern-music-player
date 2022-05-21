@@ -1,6 +1,8 @@
-import express from "express"
+const express = require("express")
+const router = express.Router()
+const { protect } = require("../middleware/auth.js")
 
-import {
+const {
   getAllMusic,
   getMusic,
   addMusic,
@@ -11,10 +13,7 @@ import {
   searchMusic,
   recentTracks,
   mostLikedTracks,
-} from "../controllers/music.js"
-import { protect } from "../middleware/auth.js"
-
-const router = express.Router()
+} = require("../controllers/music.js")
 
 router.get("/", getAllMusic)
 router.get("/:id", getMusic)
@@ -27,4 +26,4 @@ router.put("/:id", protect, updateMusic)
 router.put("/:id/like", protect, likeMusic)
 router.put("/:id/unlike", protect, unlikeMusic)
 
-export default router
+module.exports = router
