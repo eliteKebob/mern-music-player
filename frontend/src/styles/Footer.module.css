@@ -1,0 +1,25 @@
+.wrapper {
+    position: absolute;
+    top: 106vh;
+    width: 100vw;
+    height: 50vh;
+    background-color: #090909;
+    color: antiquewhite;
+    font-size: 5vh;
+    font-weight: 200;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper a {
+    color: antiquewhite;
+}
+
+@media screen and (max-width: 500px) {
+    .wrapper {
+        top: 265vh;
+    }
+}

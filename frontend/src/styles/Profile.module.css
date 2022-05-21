@@ -1,0 +1,259 @@
+.wrapper {
+    min-height: 90vh;
+    margin: 1vh 5vw;
+    border: 1px solid black;
+    box-shadow: 0 5px 5px 5px rgba(0,0,0,0.1);
+    background-color: #090909;
+    color: #fffaec;
+    transition: 0.3s all;
+}
+
+.bgImg {
+    width: 100%;
+    height: 25vh;
+    background-image: url('../assets/outrun.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 5px 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.userInfo {
+width: 80vw;
+margin-left: 2vw;
+position: absolute;
+top: 30vh;
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: flex-end;
+}
+
+.userInfo img {
+    height: 30vh;
+    width: 30vh;
+    border:0.1vh solid silver;
+    border-radius: 10px;
+    transition: 0.3s all;
+    box-shadow: inset 5px 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.userInfo img:hover {
+    opacity: 0.5;
+}
+
+.userInfo p {
+    font-size: 11vh;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    color: #fffaec;
+    text-transform: capitalize;
+    font-weight: 700;
+    color: antiquewhite;
+    margin-left: 2vw;
+}
+
+.userBio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh;
+    font-size: 3vh;
+    font-weight: 200;
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid #272727;
+}
+
+.userBio p {
+    margin-top: 2vh;
+}
+
+.controlPanel {
+    margin-top: 3vh;
+    width: 100%;
+    background-color: #f1582d;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #090909;
+    font-size: 2.5vh;
+    font-weight: 700;
+}
+
+.controlPanel p {
+    cursor: pointer;
+    transition: 0.4s all;
+    padding: 0 1vw;
+}
+
+.controlPanel p:hover {
+    background-color: #090909;
+    color: #f1582d;   
+}
+
+.epWrapper {
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    background-color: rgba(0,0,0,0.65);
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.epFormControl {
+width: 50%;
+height: 50%;
+background-color: #090909;
+color: #f1582d;
+display: flex;
+flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.epFormControl span {
+    font-weight: 700;
+    font-size: 5vh;
+    position: absolute;
+    right: 26vw;
+    top: 25vh;
+    cursor: pointer;
+}
+
+.epFormControl p {
+    margin-bottom: 5vh;
+    font-size: 5vh;
+    font-weight: 200;
+}
+
+.epFormControl form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.epFormControl form label {
+    font-size: 2.5vh;
+    font-weight: 700;
+}
+
+.epFormControl form input {
+    margin-bottom: 1vh;
+    width: 80%;
+    outline: none;
+    border: 1px solid #fffaec;
+    border-radius: 9999px;
+    padding: 1vh 1vw;
+    background: transparent;
+    color: #f1582d;
+    font-size: 2.5vh;
+}
+
+.epFormControl form button {
+    margin-top: 1vh;
+    width: 50%;
+    border: 1px solid #fffaec;
+    border-radius: 9999px;
+    padding: 1vh 1vw;
+    background: #f1582d;
+    color: #090909;
+    font-size: 3vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.4s all;
+}
+
+.epFormControl form button:hover {
+    background: #f37451;
+}
+
+.uaTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 10vh;
+    letter-spacing: 0.3vh;
+    margin-top: 1vh;
+    -webkit-text-stroke-width: 0.1vh;
+    -webkit-text-stroke-color: #f37451;
+    color: #090909;
+    border-bottom: 0.1vh solid #272727;
+}
+
+.uaTitle p {
+    width: 50%;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.uaTitle .activeTitle {
+    color: #f1582d;
+}
+
+.uaMusic {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 500px) {
+    .wrapper {
+        margin: 0;
+        height: auto;
+    }
+    .userInfo {
+        width: 100vw;
+        flex-direction: column;
+        top: 20vh;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+    }
+    .userInfo p {
+        font-size: 6vh;
+        font-weight: 400;
+        margin-left: 0;
+    }
+    .userBio {
+        font-style: normal;
+    }
+    .controlPanel {
+        font-size: 3.5vh;
+    }
+.epFormControl {
+    width: 90vw;
+    height: auto;
+}
+.epFormControl span {
+    right: 12vw;
+    top: 28vh;
+}
+.epFormControl form input {
+    width: 95%;
+}
+.epFormControl form button {
+    margin-bottom: 1vh;
+}
+.uaTitle {
+     font-size: 4.5vh;   
+}
+.uaMusic {
+    display: flex;
+    flex-direction: column;
+}
+}

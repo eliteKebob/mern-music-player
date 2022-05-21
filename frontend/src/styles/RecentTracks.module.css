@@ -1,0 +1,166 @@
+.wrapper {
+    width: 43vw;
+    height: 89vh;
+    position: absolute;
+    right: .5vw;
+    margin-top: 1vh;
+    background-color: #272727;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1);
+}
+
+.title {
+    width: 43vw;
+    height: 8vh;
+    background-color: #090909;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #11bdca;
+    font-weight: 200;
+    font-size: 5vh;
+}
+
+.title img {
+    height: 7vh;
+}
+
+.content {
+    width: 43vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.stWrapper {
+    width: 41vw;
+    height: 7.5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1);
+    margin-top: .5vh;
+}
+
+.userInfo {
+    width: 14vw;
+    height: 7.5vh;
+    border-left: 0.1vh solid #272727;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 2.5vh;
+}
+
+.userInfo img {
+    height: 6vh;
+    width: 6vh;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.userInfo img:hover {
+    opacity: 0.65;
+}
+
+.userInfo p {
+    text-transform: capitalize;
+    overflow: hidden;
+    margin-left: .5vw;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s all;
+    font-weight: 200;
+}
+
+.userInfo p:hover {
+    text-decoration: underline;
+    color: #11bdca;
+}
+
+.musicContent {
+    width: 27vw;
+    height: 7.5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.musicContent svg {
+    color: antiquewhite;
+    font-size: 3vh;
+    margin-right: .5vw;
+    cursor: pointer;
+    transition: 0.3s all;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+
+.musicContent svg:hover {
+    color: #11bdca;
+}
+
+
+.musicContent img {
+    height: 6vh;
+    width: 6vh;
+}
+
+.musicInfo {
+    margin-left: .5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 2.25vh;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.artistsInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0 .25vw;
+    font-size: 2vh;
+    color: antiquewhite;
+}
+
+@media screen and (max-width: 500px) {
+    .wrapper {
+        width: 100vw;
+        height: auto;
+        top: 150vh;
+        right: 0;
+    }
+    .title {
+        width: 100vw;
+    }
+    .content {
+        width: 100vw;
+    }
+    .stWrapper {
+        width: 98vw;
+        height: 10vh;
+    }
+    .userInfo {
+        width: 15vw;
+    }
+    .userInfo p {
+        display: none;
+    }
+    .musicContent {
+        width: 80vw;
+    }
+    .musicContent svg {
+        font-size: 5vh;
+    }
+    .musicContent img {
+        display: none;
+    }
+}
