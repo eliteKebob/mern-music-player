@@ -334,10 +334,14 @@
     .timeSlider p {
         font-size: 3vh;
     }
+    .midPanel {
+        z-index: 9999;
+    }
     .midPanel svg {
 position: fixed;
 right: 6vw;
 bottom: 19vh;
 font-size: 5vh !important;
+z-index: 9999;
     }
 }
