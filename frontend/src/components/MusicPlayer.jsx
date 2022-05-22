@@ -77,6 +77,7 @@ const MusicPlayer = () => {
             id="player"
             src={queue[nowPlaying]?.files}
             loop={repeatMode ? true : false}
+            autoPlay
           ></audio>
           <div className={styles.controlButtons}>
             <ControlButtons
