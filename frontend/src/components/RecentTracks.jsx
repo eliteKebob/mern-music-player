@@ -1,24 +1,23 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
-import styles from "../styles/RecentTracks.module.css"
-import Logo from "../assets/logo-blue.png"
-import { toast } from "react-toastify"
-import SingleRecentTrack from "./SingleRecentTrack"
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import styles from '../styles/RecentTracks.module.css'
+import Logo from '../assets/logo-blue.png'
+import { toast } from 'react-toastify'
+import SingleRecentTrack from './SingleRecentTrack'
 
 const RecentTracks = () => {
-  const [recentTracks, setRecentTracks] = useState("")
+  const [recentTracks, setRecentTracks] = useState('')
 
   const fetchRecentTracks = async () => {
-    if (recentTracks === "") {
+    if (recentTracks === '') {
       try {
-        const response = await axios.post("/api/music/recent")
+        const response = await axios.post('/api/music/recent')
         if (response.data) {
           setRecentTracks(response.data)
-          console.log(response.data)
         }
       } catch (error) {
         toast.dark(
-          "There was an error when getting recent tracks, try again later"
+          'There was an error when getting recent tracks, try again later'
         )
       }
     } else {
@@ -38,11 +37,11 @@ const RecentTracks = () => {
         <p>Newest Tracks</p>
       </div>
       <div className={styles.content}>
-        {recentTracks !== ""
+        {recentTracks !== ''
           ? recentTracks?.map((music, idx) => (
               <SingleRecentTrack music={music} key={idx} />
             ))
-          : ""}
+          : ''}
       </div>
     </div>
   )

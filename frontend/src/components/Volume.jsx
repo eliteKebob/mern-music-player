@@ -1,23 +1,27 @@
-import { useState } from "react"
-import { CgPlayList } from "react-icons/cg"
+import { useState } from 'react'
+import { CgPlayList } from 'react-icons/cg'
 import {
   IoVolumeHigh,
   IoVolumeLow,
   IoVolumeMedium,
   IoVolumeMute,
-} from "react-icons/io5"
+} from 'react-icons/io5'
+import AppLevelContext from '../context/AppLevelContext'
+import { useContext } from 'react'
+import styles from '../styles/MusicPlayer.module.css'
 
-const Volume = ({ setShowQueue, showQueue }) => {
+const Volume = () => {
+  const { setShowQueue, showQueue } = useContext(AppLevelContext)
   const [volume, setVolume] = useState(50)
 
   const handleVolume = (e) => {
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     setVolume(e.target.value)
     mPlayer.volume = volume / 100
   }
 
   const handleVolumeIconClick = () => {
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     if (volume !== 0) {
       setVolume(0)
       mPlayer.volume = 0
@@ -27,28 +31,41 @@ const Volume = ({ setShowQueue, showQueue }) => {
       mPlayer.volume = 0.5
     }
   }
+
   return (
     <>
       <CgPlayList onClick={() => setShowQueue(!showQueue)} />
       {volume < 1 ? (
-        <IoVolumeMute onClick={() => handleVolumeIconClick()} />
+        <IoVolumeMute
+          className={styles.volumeSvg}
+          onClick={() => handleVolumeIconClick()}
+        />
       ) : (
-        ""
+        ''
       )}
       {volume > 0 && volume < 31 ? (
-        <IoVolumeLow onClick={() => handleVolumeIconClick()} />
+        <IoVolumeLow
+          className={styles.volumeSvg}
+          onClick={() => handleVolumeIconClick()}
+        />
       ) : (
-        ""
+        ''
       )}
       {volume > 30 && volume < 75 ? (
-        <IoVolumeMedium onClick={() => handleVolumeIconClick()} />
+        <IoVolumeMedium
+          className={styles.volumeSvg}
+          onClick={() => handleVolumeIconClick()}
+        />
       ) : (
-        ""
+        ''
       )}
       {volume > 74 && volume < 101 ? (
-        <IoVolumeHigh onClick={() => handleVolumeIconClick()} />
+        <IoVolumeHigh
+          className={styles.volumeSvg}
+          onClick={() => handleVolumeIconClick()}
+        />
       ) : (
-        ""
+        ''
       )}
       <input
         type="range"
@@ -57,6 +74,7 @@ const Volume = ({ setShowQueue, showQueue }) => {
         max="100"
         value={volume}
         onChange={(e) => handleVolume(e)}
+        className={styles.volumeInput}
       />
     </>
   )
