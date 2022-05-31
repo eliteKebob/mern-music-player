@@ -1,26 +1,38 @@
-import { useContext, useEffect, useState } from "react"
-import AppLevelContext from "../context/AppLevelContext"
-import styles from "../styles/MusicPlayer.module.css"
-import ControlButtons from "./ControlButtons"
-import LikeIcon from "./LikeIcon"
-import Queue from "./Queue"
-import Volume from "./Volume"
+import { useContext, useEffect } from 'react'
+import AppLevelContext from '../context/AppLevelContext'
+import styles from '../styles/MusicPlayer.module.css'
+import Audio from './Audio'
+import ControlButtons from './ControlButtons'
+import LikeIcon from './LikeIcon'
+import Queue from './Queue'
+import Volume from './Volume'
+import { RiArrowDownSLine } from 'react-icons/ri'
 
 const MusicPlayer = () => {
-  const { queue, nowPlaying, musicPause, showPlayer } =
-    useContext(AppLevelContext)
-  const [timeSlider, setTimeSlider] = useState(0)
-  const [totalDurationSeconds, setTotalDurationSeconds] = useState(0)
-  const [totalDurationMinutes, setTotalDurationMinutes] = useState(0)
-  const [currentMinutes, setCurrentMinutes] = useState(0)
-  const [currentSeconds, setCurrentSeconds] = useState(0)
-  const [repeatMode, setRepeatMode] = useState(false)
-  const [showQueue, setShowQueue] = useState(false)
+  const {
+    queue,
+    nowPlaying,
+    musicPause,
+    showPlayer,
+    timeSlider,
+    setTimeSlider,
+    totalDurationMinutes,
+    totalDurationSeconds,
+    setTotalDurationMinutes,
+    setTotalDurationSeconds,
+    currentMinutes,
+    currentSeconds,
+    setCurrentMinutes,
+    setCurrentSeconds,
+    showQueue,
+    fullScreen,
+    setFullScreen,
+  } = useContext(AppLevelContext)
 
   useEffect(() => {
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     mPlayer.load()
-    mPlayer.addEventListener("timeupdate", seekUpdate)
+    mPlayer.addEventListener('timeupdate', seekUpdate)
     if (!musicPause) {
       document.title = `${queue[nowPlaying]?.name} - ${queue[nowPlaying]?.artists[0]}`
     }
@@ -28,7 +40,7 @@ const MusicPlayer = () => {
   }, [queue])
 
   const seekUpdate = () => {
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     if (!isNaN(mPlayer?.duration)) {
       setTimeSlider(mPlayer?.currentTime * (100 / mPlayer?.duration))
       setCurrentMinutes(Math.floor(mPlayer?.currentTime / 60))
@@ -46,71 +58,92 @@ const MusicPlayer = () => {
 
   const handleSlider = (e) => {
     setTimeSlider(e.target.value)
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     let seekto = mPlayer?.duration * (e.target.value / 100)
     mPlayer.currentTime = seekto
   }
 
+  const handleFullScreen = () => {
+    if (window.innerWidth < 501) {
+      setFullScreen(!fullScreen)
+    }
+  }
+
   return (
     <>
-      <div className={showPlayer ? styles.wrapper : styles.noDisplay}>
-        <div className={styles.img}>
-          <img src={queue[nowPlaying]?.photo} alt="trackphoto" />
-        </div>
-        <div className={styles.info}>
-          <p>{queue[nowPlaying]?.name}</p>
-          <div className={styles.artists}>
-            {queue[nowPlaying]?.artists.length > 1 ? (
-              queue[nowPlaying]?.artists?.map((artist, idx) => (
-                <p key={idx}>{artist}</p>
-              ))
-            ) : (
-              <p>{queue[nowPlaying]?.artists[0]}</p>
-            )}
+      <div className={!showPlayer ? styles.noDisplay : ''}>
+        <div className={fullScreen ? styles.fsWrapper : styles.wrapper}>
+          <div className={styles.closeIcon}>
+            {fullScreen ? <RiArrowDownSLine onClick={handleFullScreen} /> : ''}
           </div>
-        </div>
-        <div className={styles.midPanel}>
-          <LikeIcon />
-        </div>
-        <div className={styles.audioControls}>
-          <audio
-            id="player"
-            src={queue[nowPlaying]?.files}
-            loop={repeatMode ? true : false}
-            autoPlay
-          ></audio>
-          <div className={styles.controlButtons}>
-            <ControlButtons
-              repeatMode={repeatMode}
-              setRepeatMode={setRepeatMode}
+          <div className={fullScreen ? styles.fsImg : styles.img}>
+            <img
+              src={queue[nowPlaying]?.photo}
+              alt="trackphoto"
+              onClick={handleFullScreen}
             />
           </div>
-          <div className={styles.timeSlider}>
-            <p>
-              {currentMinutes}:
-              {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
-            </p>
-            <input
-              type="range"
-              name="time"
-              min="0"
-              max="100"
-              value={timeSlider}
-              onChange={(e) => handleSlider(e)}
-            />
-            <p>
-              {totalDurationMinutes}:
-              {totalDurationSeconds < 10
-                ? `0${totalDurationSeconds}`
-                : totalDurationSeconds}
-            </p>
+          <div
+            className={fullScreen ? styles.fsInfo : styles.info}
+            onClick={handleFullScreen}
+          >
+            <p>{queue[nowPlaying]?.name}</p>
+            <div className={fullScreen ? styles.fsArtists : styles.artists}>
+              {queue[nowPlaying]?.artists.length > 1 ? (
+                queue[nowPlaying]?.artists?.map((artist, idx) => (
+                  <p key={idx}>{artist}</p>
+                ))
+              ) : (
+                <p>{queue[nowPlaying]?.artists[0]}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className={styles.volume}>
-          <Volume setShowQueue={setShowQueue} showQueue={showQueue} />
+          <div className={fullScreen ? styles.fsMidPanel : styles.midPanel}>
+            <LikeIcon />
+          </div>
+          <div
+            className={
+              fullScreen ? styles.fsAudioControls : styles.audioControls
+            }
+          >
+            <Audio />
+            <div
+              className={
+                fullScreen ? styles.fsControlButtons : styles.controlButtons
+              }
+            >
+              <ControlButtons />
+            </div>
+            <div
+              className={fullScreen ? styles.fsTimeSlider : styles.timeSlider}
+            >
+              <p>
+                {currentMinutes}:
+                {currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds}
+              </p>
+              <input
+                type="range"
+                name="time"
+                min="0"
+                max="100"
+                value={timeSlider}
+                onChange={(e) => handleSlider(e)}
+              />
+              <p>
+                {totalDurationMinutes}:
+                {totalDurationSeconds < 10
+                  ? `0${totalDurationSeconds}`
+                  : totalDurationSeconds}
+              </p>
+            </div>
+          </div>
+          <div className={fullScreen ? styles.fsVolume : styles.volume}>
+            <Volume />
+          </div>
         </div>
       </div>
-      {showQueue ? <Queue setShowQueue={setShowQueue} /> : ""}
+
+      {showQueue ? <Queue /> : ''}
     </>
   )
 }

@@ -1,72 +1,80 @@
-import React from "react"
-import axios from "axios"
-import { useState, useReducer } from "react"
-import { reducer } from "../reducer.js"
-import { toast } from "react-toastify"
+import React from 'react'
+import axios from 'axios'
+import { useState, useReducer } from 'react'
+import { reducer } from '../reducer.js'
+import { toast } from 'react-toastify'
 
 const AppLevelContext = React.createContext()
-const userApi = "/api/users/"
-const musicApi = "/api/music/"
+const userApi = '/api/users/'
+const musicApi = '/api/music/'
 
 const initialState = {
-  userData: "",
+  userData: '',
   loading: false,
-  error: "",
+  error: '',
   isLoggedIn: false,
 }
 
 export const AppLevelProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { userData, loading, error, isLoggedIn } = state
-  const [userProfileData, setUserProfileData] = useState("")
-  const [userLikedMusics, setUserLikedMusics] = useState("")
-  const [userMusics, setUserMusics] = useState("")
+  const [userProfileData, setUserProfileData] = useState('')
+  const [userLikedMusics, setUserLikedMusics] = useState('')
+  const [userMusics, setUserMusics] = useState('')
   const [queue, setQueue] = useState([])
   const [nowPlaying, setNowPlaying] = useState(0)
   const [musicPause, setMusicPause] = useState(true)
   const [showPlayer, setShowPlayer] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const [timeSlider, setTimeSlider] = useState(0)
+  const [totalDurationSeconds, setTotalDurationSeconds] = useState(0)
+  const [totalDurationMinutes, setTotalDurationMinutes] = useState(0)
+  const [currentMinutes, setCurrentMinutes] = useState(0)
+  const [currentSeconds, setCurrentSeconds] = useState(0)
+  const [repeatMode, setRepeatMode] = useState(false)
+  const [showQueue, setShowQueue] = useState(false)
+  const [fullScreen, setFullScreen] = useState(false)
 
-  const currentUserLS = JSON.parse(localStorage.getItem("user"))
+  const currentUserLS = JSON.parse(localStorage.getItem('user'))
 
   window.onbeforeunload = function () {
-    localStorage.removeItem("user")
-    return ""
+    localStorage.removeItem('user')
+    return ''
   }
 
   const register = async (formData) => {
-    dispatch({ type: "USER_REGISTER_START" })
+    dispatch({ type: 'USER_REGISTER_START' })
     try {
       const response = await axios.post(userApi, formData)
       if (response.data) {
-        toast.dark("Successfully registered! You can now sign-in.")
-        dispatch({ type: "USER_REGISTER_SUCCESS" })
+        toast.dark('Successfully registered! You can now sign-in.')
+        dispatch({ type: 'USER_REGISTER_SUCCESS' })
       }
     } catch (error) {
-      dispatch({ type: "USER_REGISTER_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'USER_REGISTER_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const login = async (formData) => {
-    dispatch({ type: "USER_LOGIN_START" })
+    dispatch({ type: 'USER_LOGIN_START' })
     try {
-      const response = await axios.post(userApi + "login", formData)
+      const response = await axios.post(userApi + 'login', formData)
       if (response.data) {
-        toast.dark("Successfully signed in!")
-        dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data })
-        localStorage.setItem("user", JSON.stringify(response.data))
+        toast.dark('Successfully signed in!')
+        dispatch({ type: 'USER_LOGIN_SUCCESS', payload: response.data })
+        localStorage.setItem('user', JSON.stringify(response.data))
       }
     } catch (error) {
-      dispatch({ type: "USER_LOGIN_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'USER_LOGIN_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const logout = () => {
-    toast.dark("Successfully logged out!")
-    dispatch({ type: "USER_LOGOUT" })
-    localStorage.removeItem("user")
+    toast.dark('Successfully logged out!')
+    dispatch({ type: 'USER_LOGOUT' })
+    localStorage.removeItem('user')
   }
 
   const getUser = async (id) => {
@@ -76,16 +84,16 @@ export const AppLevelProvider = ({ children }) => {
         setUserProfileData(response.data)
       }
     } catch (error) {
-      toast.dark("There was an error. Try again later.")
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const updateUser = async (id, updateData) => {
-    dispatch({ type: "USER_UPDATE_START" })
+    dispatch({ type: 'USER_UPDATE_START' })
     try {
       let token = currentUserLS?.token
       let config = {
-        method: "put",
+        method: 'put',
         url: `/api/users/${id}`,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -94,21 +102,21 @@ export const AppLevelProvider = ({ children }) => {
       }
       const response = await axios(config)
       if (response.data) {
-        dispatch({ type: "USER_UPDATE_SUCCESS", payload: response.data })
-        toast.dark("Successfully updated your profile!")
+        dispatch({ type: 'USER_UPDATE_SUCCESS', payload: response.data })
+        toast.dark('Successfully updated your profile!')
       }
     } catch (error) {
-      dispatch({ type: "USER_UPDATE_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'USER_UPDATE_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const addMusic = async (musicData) => {
-    dispatch({ type: "MUSIC_ADD_START" })
+    dispatch({ type: 'MUSIC_ADD_START' })
     try {
       let token = currentUserLS?.token
       let config = {
-        method: "post",
+        method: 'post',
         url: musicApi,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -117,51 +125,51 @@ export const AppLevelProvider = ({ children }) => {
       }
       const response = await axios(config)
       if (response.data) {
-        dispatch({ type: "MUSIC_ADD_SUCCESS", payload: response.data })
+        dispatch({ type: 'MUSIC_ADD_SUCCESS', payload: response.data })
         setUserProfileData(response.data)
-        toast.dark("Track successfully uploaded!")
+        toast.dark('Track successfully uploaded!')
       }
     } catch (error) {
-      dispatch({ type: "MUSIC_ADD_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'MUSIC_ADD_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const getUserMusics = async (id) => {
     try {
-      const response = await axios.get(userApi + id + "/addedmusics")
+      const response = await axios.get(userApi + id + '/addedmusics')
       if (response.data) {
         setUserMusics(response.data)
       }
     } catch (error) {
-      toast.dark("There was an error. Try again later.")
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const getUserLikedMusics = async (id) => {
     try {
-      const response = await axios.get(userApi + id + "/likedmusics")
+      const response = await axios.get(userApi + id + '/likedmusics')
       if (response.data) {
         setUserLikedMusics(response.data)
       }
     } catch (error) {
-      toast.dark("There was an error. Try again later.")
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const addMusicToQ = (t) => {
     let newQ = queue
     newQ.push(t)
-    toast.dark("Track successfully added to the queue!")
+    toast.dark('Track successfully added to the queue!')
     setQueue(newQ)
   }
 
   const deleteMusic = async (id) => {
-    dispatch({ type: "MUSIC_DELETE_START" })
+    dispatch({ type: 'MUSIC_DELETE_START' })
     try {
       let token = currentUserLS?.token
       let config = {
-        method: "delete",
+        method: 'delete',
         url: musicApi + id,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -169,22 +177,22 @@ export const AppLevelProvider = ({ children }) => {
       }
       const response = await axios(config)
       if (response.data) {
-        dispatch({ type: "MUSIC_DELETE_SUCCESS", payload: response.data })
+        dispatch({ type: 'MUSIC_DELETE_SUCCESS', payload: response.data })
         setUserProfileData(response.data)
-        toast.dark("Track successfully deleted!")
+        toast.dark('Track successfully deleted!')
       }
     } catch (error) {
-      dispatch({ type: "MUSIC_DELETE_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'MUSIC_DELETE_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const updateMusic = async (id, updateData) => {
-    dispatch({ type: "MUSIC_UPDATE_START" })
+    dispatch({ type: 'MUSIC_UPDATE_START' })
     try {
       let token = currentUserLS?.token
       let config = {
-        method: "put",
+        method: 'put',
         url: musicApi + id,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -193,56 +201,56 @@ export const AppLevelProvider = ({ children }) => {
       }
       const response = await axios(config)
       if (response.data) {
-        dispatch({ type: "MUSIC_UPDATE_SUCCESS" })
-        toast.dark("Track successfully updated!")
+        dispatch({ type: 'MUSIC_UPDATE_SUCCESS' })
+        toast.dark('Track successfully updated!')
       }
     } catch (error) {
-      dispatch({ type: "MUSIC_UPDATE_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'MUSIC_UPDATE_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const likeMusic = async (id) => {
-    dispatch({ type: "MUSIC_LIKE_START" })
+    dispatch({ type: 'MUSIC_LIKE_START' })
     try {
       let token = currentUserLS?.token
       let config = {
-        method: "put",
-        url: musicApi + id + "/like",
+        method: 'put',
+        url: musicApi + id + '/like',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
       const response = await axios(config)
       if (response.data) {
-        dispatch({ type: "MUSIC_LIKE_SUCCESS", payload: response.data })
-        toast.dark("You liked this track!")
+        dispatch({ type: 'MUSIC_LIKE_SUCCESS', payload: response.data })
+        toast.dark('You liked this track!')
       }
     } catch (error) {
-      dispatch({ type: "MUSIC_LIKE_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'MUSIC_LIKE_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
   const unlikeMusic = async (id) => {
-    dispatch({ type: "MUSIC_LIKE_START" })
+    dispatch({ type: 'MUSIC_LIKE_START' })
     try {
       let token = currentUserLS?.token
       let config = {
-        method: "put",
-        url: musicApi + id + "/unlike",
+        method: 'put',
+        url: musicApi + id + '/unlike',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
       const response = await axios(config)
       if (response.data) {
-        dispatch({ type: "MUSIC_LIKE_SUCCESS", payload: response.data })
-        toast.dark("You unliked this track!")
+        dispatch({ type: 'MUSIC_LIKE_SUCCESS', payload: response.data })
+        toast.dark('You unliked this track!')
       }
     } catch (error) {
-      dispatch({ type: "MUSIC_LIKE_ERROR" })
-      toast.dark("There was an error. Try again later.")
+      dispatch({ type: 'MUSIC_LIKE_ERROR' })
+      toast.dark('There was an error. Try again later.')
     }
   }
 
@@ -279,6 +287,22 @@ export const AppLevelProvider = ({ children }) => {
         unlikeMusic,
         showForm,
         setShowForm,
+        timeSlider,
+        setTimeSlider,
+        totalDurationMinutes,
+        totalDurationSeconds,
+        setTotalDurationMinutes,
+        setTotalDurationSeconds,
+        currentMinutes,
+        currentSeconds,
+        setCurrentMinutes,
+        setCurrentSeconds,
+        repeatMode,
+        setRepeatMode,
+        showQueue,
+        setShowQueue,
+        fullScreen,
+        setFullScreen,
       }}
     >
       {children}

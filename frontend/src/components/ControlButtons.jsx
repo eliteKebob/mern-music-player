@@ -1,25 +1,33 @@
-import styles from "../styles/MusicPlayer.module.css"
-import { useContext, useState, useEffect } from "react"
-import AppLevelContext from "../context/AppLevelContext"
-import { CgPlayTrackPrev, CgPlayTrackNext } from "react-icons/cg"
-import { IoShuffle, IoPlayCircle, IoPauseCircle } from "react-icons/io5"
-import { RiRepeatOneFill, RiRepeat2Fill } from "react-icons/ri"
+import styles from '../styles/MusicPlayer.module.css'
+import { useContext, useState, useEffect } from 'react'
+import AppLevelContext from '../context/AppLevelContext'
+import { CgPlayTrackPrev, CgPlayTrackNext } from 'react-icons/cg'
+import { IoShuffle, IoPlayCircle, IoPauseCircle } from 'react-icons/io5'
+import { RiRepeatOneFill, RiRepeat2Fill } from 'react-icons/ri'
 
-const ControlButtons = ({ repeatMode, setRepeatMode }) => {
-  const { queue, nowPlaying, setNowPlaying, musicPause, setMusicPause } =
-    useContext(AppLevelContext)
+const ControlButtons = () => {
+  const {
+    queue,
+    nowPlaying,
+    setNowPlaying,
+    musicPause,
+    setMusicPause,
+    repeatMode,
+    setRepeatMode,
+    fullScreen,
+  } = useContext(AppLevelContext)
   const [shuffleMode, setShuffleMode] = useState(false)
 
   useEffect(() => {
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     mPlayer.load()
-    mPlayer.addEventListener("ended", nextTrack)
+    mPlayer.addEventListener('ended', nextTrack)
     mPlayer.play()
     setMusicPause(false)
     // eslint-disable-next-line
   }, [nowPlaying])
   const playTrack = () => {
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     setMusicPause(false)
     mPlayer?.play()
   }
@@ -45,7 +53,7 @@ const ControlButtons = ({ repeatMode, setRepeatMode }) => {
     }
   }
   const handlePlay = () => {
-    let mPlayer = document.getElementById("player")
+    let mPlayer = document.getElementById('player')
     if (!musicPause) {
       setMusicPause(true)
       mPlayer?.pause()
@@ -83,12 +91,12 @@ const ControlButtons = ({ repeatMode, setRepeatMode }) => {
       <CgPlayTrackPrev onClick={() => prevTrack()} />
       {musicPause ? (
         <IoPlayCircle
-          className={styles.playpausebtn}
+          className={!fullScreen ? styles.playpausebtn : styles.fsPlayBtn}
           onClick={() => handlePlay()}
         />
       ) : (
         <IoPauseCircle
-          className={styles.playpausebtn}
+          className={!fullScreen ? styles.playpausebtn : styles.fsPlayBtn}
           onClick={() => handlePlay()}
         />
       )}

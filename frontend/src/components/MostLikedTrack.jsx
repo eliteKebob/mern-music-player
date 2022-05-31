@@ -1,11 +1,11 @@
-import styles from "../styles/Landing.module.css"
-import axios from "axios"
-import { useState, useEffect, useContext } from "react"
-import { ImHeart, ImHeartBroken } from "react-icons/im"
-import { CgPlayListAdd, CgPlayButtonO } from "react-icons/cg"
-import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
-import AppLevelContext from "../context/AppLevelContext"
+import styles from '../styles/Landing.module.css'
+import axios from 'axios'
+import { useState, useEffect, useContext } from 'react'
+import { ImHeart, ImHeartBroken } from 'react-icons/im'
+import { CgPlayListAdd, CgPlayButtonO } from 'react-icons/cg'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import AppLevelContext from '../context/AppLevelContext'
 
 const MostLikedTrack = () => {
   const {
@@ -19,18 +19,17 @@ const MostLikedTrack = () => {
     isLoggedIn,
     userData,
   } = useContext(AppLevelContext)
-  const [likedTracksList, setLikedTracksList] = useState("")
-  const [mostLiked, setMostLiked] = useState("")
+  const [likedTracksList, setLikedTracksList] = useState('')
+  const [mostLiked, setMostLiked] = useState('')
   const [userLikedThisMusic, setUserLikedThisMusic] = useState(false)
 
   const navigate = useNavigate()
 
   const fetchTracksList = async () => {
-    if (likedTracksList === "") {
+    if (likedTracksList === '') {
       try {
-        const response = await axios.post("/api/music/mostliked")
+        const response = await axios.post('/api/music/mostliked')
         if (response.data) {
-          console.log(response.data)
           setLikedTracksList(response.data)
           findMostLiked()
         }
@@ -62,7 +61,6 @@ const MostLikedTrack = () => {
       const response = await axios.get(`/api/music/${id}`)
       if (response.data) {
         setMostLiked(response.data)
-        console.log(response.data)
       }
     } catch (error) {
       toast.dark(
@@ -125,7 +123,7 @@ const MostLikedTrack = () => {
         <ImHeart />
       </div>
       <div className={styles.mltContent}>
-        {mostLiked === "" ? (
+        {mostLiked === '' ? (
           <p className={styles.mltLoading}>Loading...</p>
         ) : (
           <div className={styles.mltTrack}>
@@ -137,7 +135,7 @@ const MostLikedTrack = () => {
                   mostLiked?.artists?.map((artist, idx) => (
                     <p className={styles.artist} key={idx}>
                       {artist}
-                      {mostLiked?.artists?.length - 1 > idx ? "," : ""}
+                      {mostLiked?.artists?.length - 1 > idx ? ',' : ''}
                     </p>
                   ))
                 ) : (
@@ -166,12 +164,12 @@ const MostLikedTrack = () => {
                 {userLikedThisMusic && isLoggedIn ? (
                   <ImHeartBroken onClick={() => handleLike()} />
                 ) : (
-                  ""
+                  ''
                 )}
                 {!userLikedThisMusic && isLoggedIn ? (
                   <ImHeart onClick={() => handleLike()} />
                 ) : (
-                  ""
+                  ''
                 )}
               </div>
             </div>

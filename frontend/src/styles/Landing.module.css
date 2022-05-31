@@ -1,291 +1,296 @@
 .wrapper {
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,0.51) 0%, rgba(148,187,233,0.51) 100%);
-    width: 100vw;
-    height: 91vh;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 0.51) 0%,
+    rgba(148, 187, 233, 0.51) 100%
+  );
+  width: 100vw;
+  height: 91vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .welcomeWrapper {
-    position: absolute;
-    top: 25vh;
-    width: 54vw;
-    height: 40vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 25vh;
+  width: 54vw;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .welcomeContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10vh;
-    font-weight: 700;
-    margin-left: 1vw;
-    color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 6vh;
+  font-weight: 700;
+  margin-left: 1vw;
+  color: transparent;
 }
 
 .welcomeContent p {
-    -webkit-text-stroke-width: 0.2vh;
-    -webkit-text-stroke-color: #272727;
+  -webkit-text-stroke-width: 0.2vh;
+  -webkit-text-stroke-color: #272727;
 }
 
 .btn55 {
-    display: block;
-    width: 100%;
-    outline: none;
-    border: none;
-    height: 8vh;
-    cursor: pointer;
-    margin: .5vh auto;
-    width: 13vw;
-    border-radius: 999px;
-    position: relative;
-    overflow: hidden;
-    font-weight: 900;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #11bdca, #f1582d);
-    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1);
+  display: block;
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 8vh;
+  cursor: pointer;
+  margin: 0.5vh auto;
+  width: 13vw;
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #11bdca, #f1582d);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
 }
-  
-  .btn55 span {
-    position: absolute;
-    inset: 5px;
-    display: grid;
-    place-items: center;
-    border-radius: 999px;
-    color: antiquewhite;
-    background: #272727;
-    transition: background 0.3s;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-    font-size: 4vh;
-    overflow: hidden;
-  }
-  .btn55:hover span {
-    background: none;
-    color: #272727;
-  }
 
-  .mltWrapper {
-      position: absolute;
-      top: 68vh;
-      width: 54vw;
-      height: 37vh;
-      margin-left: .5vw;
-      background-color: #272727;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-  }
+.btn55 span {
+  position: absolute;
+  inset: 5px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: antiquewhite;
+  background: #272727;
+  transition: background 0.3s;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  font-size: 4vh;
+  overflow: hidden;
+}
+.btn55:hover span {
+  background: none;
+  color: #272727;
+}
 
-  .mltTitle {
-      width: 54vw;
-      height: 7vh;
-      background-color: #090909;
-      font-size: 4vh;
-      font-weight: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: antiquewhite;
-  }
+.mltWrapper {
+  position: absolute;
+  top: 68vh;
+  width: 54vw;
+  height: 37vh;
+  margin-left: 0.5vw;
+  background-color: #272727;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-  .mltTitle p {
-      margin: 0 .5vw;
-  }
+.mltTitle {
+  width: 54vw;
+  height: 7vh;
+  background-color: #090909;
+  font-size: 4vh;
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: antiquewhite;
+}
 
-  .mltLoading {
-    color: antiquewhite;
-    font-size: 4vh;
-      font-weight: 200;
-      text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-  }
+.mltTitle p {
+  margin: 0 0.5vw;
+}
 
-  .mltContent {
-      width: 54vw;
-      height: 30vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
+.mltLoading {
+  color: antiquewhite;
+  font-size: 4vh;
+  font-weight: 200;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+}
 
-  .mltTrack {
-    width: 54vw;
-    height: 30vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-  }
+.mltContent {
+  width: 54vw;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .mltTrack img {
-      height: 12vw;
-      width: 12vw;
-      border-radius: 10px;
-      margin-left: 1vw;
-  }
+.mltTrack {
+  width: 54vw;
+  height: 30vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-  .mltTrackInfo {
-      width: 24vw;
-      font-size: 6vh;
-      font-weight: 200;
-      color: antiquewhite;
-      text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-      margin-left: 1vw;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
+.mltTrack img {
+  height: 12vw;
+  width: 12vw;
+  border-radius: 10px;
+  margin-left: 1vw;
+}
 
-  .mltTrackArtists {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
+.mltTrackInfo {
+  width: 24vw;
+  font-size: 6vh;
+  font-weight: 200;
+  color: antiquewhite;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  margin-left: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
 
-  .mltTrackArtists .artist {
-      color: #f1582d;
-      font-size: 4vh;
-  }
+.mltTrackArtists {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
-  .mltUserControls {
-      width: 15vw;
-      height: 30vh;
-    display: flex;
-        flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
+.mltTrackArtists .artist {
+  color: #f1582d;
+  font-size: 4vh;
+}
 
-  .mltUser {
-      width: 15vw;
-      height: 15vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
+.mltUserControls {
+  width: 15vw;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
 
-  .mltUser img {
-      width: 5vw;
-      height: 5vw;
-      border-radius: 50%;
-      margin-left: 0;
-      cursor: pointer;
-  }
+.mltUser {
+  width: 15vw;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
-  .mltUser p {
-    font-size: 4vh;
-    font-weight: 200;
-    color: antiquewhite;
-    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-    text-transform: capitalize;
-    margin-left: 1vw;
-    transition: 0.3s all;
-    cursor: pointer;
-  }
+.mltUser img {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  margin-left: 0;
+  cursor: pointer;
+}
 
-  .mltUser p:hover {
-text-decoration: underline;
-color: #f1582d;
-  }
+.mltUser p {
+  font-size: 4vh;
+  font-weight: 200;
+  color: antiquewhite;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  text-transform: capitalize;
+  margin-left: 1vw;
+  transition: 0.3s all;
+  cursor: pointer;
+}
 
-  .mltControls {
-    width: 15vw;
-    height: 15vh;
+.mltUser p:hover {
+  text-decoration: underline;
+  color: #f1582d;
+}
+
+.mltControls {
+  width: 15vw;
+  height: 15vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  border-top: .5vh solid #555;
+  border-top: 0.5vh solid #555;
   color: antiquewhite;
   font-size: 4vh;
-  }
+}
 
-  .mltControls svg {
-      cursor: pointer;
-      transition: 0.3s all;
-  }
-  
-  .mltControls svg:hover {
-      color: #f1582d;
-  }
+.mltControls svg {
+  cursor: pointer;
+  transition: 0.3s all;
+}
 
-  @media screen and (max-width: 500px) {
-    .wrapper {
-      height: 250vh;
-    }
-    .welcomeWrapper {
-      width: 100vw;
-      height: 60vh;
-    }
-    .welcomeContent {
-      font-size: 8vh;
-      font-weight: 200;
-      margin-left: 0;
-    }
-    .btn55 {
-      width: 50vw;
-    }
-    .mltWrapper {
-      top: 85vh;
-      width: 98vw;
-      height: auto;
-    }
-    .mltTitle {
-      width: 98vw;
-    }
-    .mltTitle p {
-      margin: 0 2vw;
-    }
-    .mltContent,.mltTrack {
-      width: 98vw;
-      height: auto;
-    }
-    .mltTrack {
-      height: auto;
-      flex-direction: column;
-    }
-    .mltTrack img {
-      height: 25vw;
-      width: 25vw;
-      margin-left: 0;
-      margin-top: 1vh;
-    }
-    .mltTrackInfo {
-      width: 98vw;
-      text-align: center;
-      font-size: 4vh;
-      align-items: center;
-      margin-left: 0;
-      margin-top: 1vh;
-    }
-    .mltTrackArtists .artist {
-      font-size: 3vh;
-    }
-    .mltUserControls {
-      width: 98vw;
-      height: auto;
-    }
-    .mltUser {
-      width: 98vw;
-      margin-top: 1vh;
-      border-top: .5vh solid #555;;
-    }
-    .mltUser img {
-      width: 15vw;
-      height: 15vw;
-    }
-    .mltControls {
-      width: 98vw;
-      font-size: 6vh;
-    }
+.mltControls svg:hover {
+  color: #f1582d;
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    height: 250vh;
   }
+  .welcomeWrapper {
+    width: 100vw;
+    height: 60vh;
+  }
+  .welcomeContent {
+    font-size: 8vh;
+    font-weight: 200;
+    margin-left: 0;
+  }
+  .btn55 {
+    width: 50vw;
+  }
+  .mltWrapper {
+    top: 85vh;
+    width: 98vw;
+    height: auto;
+  }
+  .mltTitle {
+    width: 98vw;
+  }
+  .mltTitle p {
+    margin: 0 2vw;
+  }
+  .mltContent,
+  .mltTrack {
+    width: 98vw;
+    height: auto;
+  }
+  .mltTrack {
+    height: auto;
+    flex-direction: column;
+  }
+  .mltTrack img {
+    height: 25vw;
+    width: 25vw;
+    margin-left: 0;
+    margin-top: 1vh;
+  }
+  .mltTrackInfo {
+    width: 98vw;
+    text-align: center;
+    font-size: 4vh;
+    align-items: center;
+    margin-left: 0;
+    margin-top: 1vh;
+  }
+  .mltTrackArtists .artist {
+    font-size: 3vh;
+  }
+  .mltUserControls {
+    width: 98vw;
+    height: auto;
+  }
+  .mltUser {
+    width: 98vw;
+    margin-top: 1vh;
+    border-top: 0.5vh solid #555;
+  }
+  .mltUser img {
+    width: 15vw;
+    height: 15vw;
+  }
+  .mltControls {
+    width: 98vw;
+    font-size: 6vh;
+  }
+}
