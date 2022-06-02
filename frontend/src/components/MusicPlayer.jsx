@@ -73,9 +73,13 @@ const MusicPlayer = () => {
     <>
       <div className={!showPlayer ? styles.noDisplay : ''}>
         <div className={fullScreen ? styles.fsWrapper : styles.wrapper}>
-          <div className={styles.closeIcon}>
-            {fullScreen ? <RiArrowDownSLine onClick={handleFullScreen} /> : ''}
-          </div>
+          {fullScreen ? (
+            <div className={styles.closeIcon}>
+              <RiArrowDownSLine onClick={handleFullScreen} />
+            </div>
+          ) : (
+            ''
+          )}
           <div className={fullScreen ? styles.fsImg : styles.img}>
             <img
               src={queue[nowPlaying]?.photo}
