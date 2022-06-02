@@ -142,7 +142,6 @@ const MusicPlayer = () => {
           </div>
         </div>
       </div>
-
       {showQueue ? <Queue /> : ''}
     </>
   )
